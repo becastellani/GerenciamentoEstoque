@@ -39,4 +39,39 @@ class Estoque{
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getItemById($id)
+    {
+        $sql = "SELECT i.id, i.nome, i.quantidade, i.preco, i.tipo_id, t.nome AS tipo
+                FROM itens_estoque i
+                LEFT JOIN tipos_item t ON i.tipo_id = t.id
+                WHERE i.id = :id";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateItem($id, $nome, $quantidade, $preco, $tipoID)
+    {
+        $sql = "UPDATE itens_estoque SET nome = :nome, quantidade = :quantidade, preco = :preco, tipo_id = :tipoID WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':nome', $nome);
+        $stmt->bindParam(':quantidade', $quantidade);
+        $stmt->bindParam(':preco', $preco);
+        $stmt->bindParam(':tipoID', $tipoID);
+        $stmt->bindParam(':id', $id);
+
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (PDOException $e) {
+            echo 'Erro: ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    
 }

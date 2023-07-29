@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
-
-    <script src="../node_modules/jquery/dist/jquery.js"></script> 
-    <script src="../node_modules/jquery-toast-plugin/dist/jquery.toast.min.js"></script>
-    <link rel="stylesheet" href="../node_modules/jquery-toast-plugin//dist/jquery.toast.min.css">
     <title>Cadastro de itens</title>
 </head>
 <body>
@@ -39,44 +35,6 @@
 
             </form>
     </div>
-
-
-    <script>
-$(document).ready(function() {
-  // Evento para lidar com o envio do formulário
-  $('form').submit(function(e) {
-    e.preventDefault(); // Previne o envio normal do formulário
-
-    // Validar se todos os campos estão preenchidos
-    var name = $('#nome').val();
-    var quantity = $('#quantidade').val();
-    var price = $('#preco').val();
-    var option = $('#tipo').val();
-
-    if (name === '' || quantity === '' || price === '' || option === '') {
-      // Exibir mensagem de erro com o toast
-      $.toast({
-        heading: 'Erro',
-        text: 'Por favor, preencha todos os campos!',
-        icon: 'error',
-        showHideTransition: 'fade',
-        position: 'top-right'
-      });
-    } else {
-      // Se todos os campos estiverem preenchidos, você pode enviar o formulário aqui, se necessário
-      // Exemplo: $(this).submit();
-      // Ou pode exibir uma mensagem de sucesso com o toast
-      $.toast({
-        heading: 'Sucesso',
-        text: 'Formulário enviado com sucesso!',
-        icon: 'success',
-        showHideTransition: 'slide',
-        position: 'top-right'
-      });
-    }
-  });
-});
-</script>
 
 </body>
 </html>
