@@ -73,5 +73,19 @@ class Estoque{
         }
     }
 
+    public function excluirItem($id)
+    {
+        $sql = "DELETE FROM itens_estoque WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+
+        try {
+            $result = $stmt->execute();
+            return $result;
+        } catch (PDOException $e) {
+             echo 'Erro: ' . $e->getMessage();
+            return false;
+        }
+    }
     
 }

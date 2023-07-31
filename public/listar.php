@@ -31,13 +31,18 @@
                     echo "<td>" . $item['quantidade'] . "</td>";
                     echo "<td>" . $item['preco'] . "</td>";
                     echo "<td>" . $item['tipo'] . "</td>";
-                    echo "<td>
+                    echo "<td style=\"display = flex\">
+                        <div style=\"display: flex;\">
                             <a href=\"./editar.php?id=" . $item['id'] . "\">
                                 <i class=\"fa-solid fa-pen-to-square\" style=\"color: #000000\"></i>
                             </a>
-                            <a href=\"caminho_para_excluir.php?id=" . $item['id'] . "\">
+                            <form action=\"../app/excluir.php\" method=\"post\">
+                            <input type=\"hidden\" name=\"id\" value=\"" . $item['id'] . "\">
+                            <button type=\"submit\" style=\"cursor: pointer;background: none; border: none; padding: 0; padding-left: 5px\">
                                 <i class=\"fas fa-trash\" style=\"color: #000000\"></i>
-                            </a>
+                            </button>
+                        </form>
+                        </div>
                         </td>";
                     echo "</tr>";
                 }
@@ -45,6 +50,7 @@
 
             
         </table>
+        <a href="./index.php">Voltar para tela de Cadastro</a>
     </div>
 </body>
 </html>
