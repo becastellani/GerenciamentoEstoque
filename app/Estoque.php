@@ -1,5 +1,6 @@
 <?php
 
+
 require_once "../config/config.php";
 
 class Estoque{
@@ -35,6 +36,14 @@ class Estoque{
                 FROM itens_estoque i
                 LEFT JOIN tipos_item t ON i.tipo_id = t.id";
                 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function getTiposItem()
+    {
+        $sql = "SELECT id, nome FROM tipos_item";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);

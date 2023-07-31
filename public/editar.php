@@ -35,9 +35,12 @@
                     <label for="tipo">Tipo:</label>
                     <select name="tipo" id="tipo">
                         <option value="">Selecione o tipo</option>
-                        <option value="1" <?php echo ($item['tipo_id'] == 1) ? 'selected' : ''; ?>>Alimento</option>
-                        <option value="2" <?php echo ($item['tipo_id'] == 2) ? 'selected' : ''; ?>>Ferramentas</option>
-                        <option value="3" <?php echo ($item['tipo_id'] == 3) ? 'selected' : ''; ?>>Casa&Lar</option>
+                        <?php
+                        $tipos = $estoque->getTiposItem();
+                        foreach ($tipos as $tipo) {
+                            echo "<option value=\"" . $tipo['id'] . "\" " . ($item['tipo_id'] == $tipo['id'] ? 'selected' : '') . ">" . $tipo['nome'] . "</option>";
+                        }
+                        ?>
                     </select>
 
                     <button type="submit" class="submit">Atualizar</button>

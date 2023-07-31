@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <title>Cadastro de itens</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
@@ -24,10 +25,15 @@
                 <label for="tipo">Tipo:</label>
                 <select name="tipo" id="tipo">
                     <option value="">Selecione o tipo</option>
-                    <option value="1">Alimento</option>
-                    <option value="2">Ferramentas</option>
-                    <option value="3">Casa&Lar</option>
-                </select>
+                    <?php
+                    require_once '../app/Estoque.php';
+                    $estoque = new Estoque();
+                    $tipos = $estoque->getTiposItem();
+                    foreach ($tipos as $tipo) {
+                        echo "<option value=\"" . $tipo['id'] . "\">" . $tipo['nome'] . "</option>";
+                    }
+                    ?>
+</select>
 
                 <button type="submit" class="submit">Cadastrar</button>
                 <a href="../public/listar.php">Ver Itens no Estoque</a>
