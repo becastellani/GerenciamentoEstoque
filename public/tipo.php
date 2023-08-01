@@ -11,14 +11,19 @@
     <link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 <body>
-<div class="container1">
+<div class="col-8 m-auto pt-3 pb-4 text-center">
         <h2>Listagem Tipos</h2>
-        <table>
-            <tr>
-                <th>#</th>
-                <th>Nome</th>
-            </tr>
+        <table class="table">
+        <thead class="thead-dark">
 
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Ações</th>
+            </tr>
+            
+            </thead>
+            <tbody class="table-group-divider">
             <?php
                 require_once '../app/Item.php';
                 $estoque = new Item();
@@ -28,13 +33,13 @@
                     echo "<td>" . $item['id'] . "</td>";
                     echo "<td>" . $item['nome'] . "</td>";
                     echo "<td style=\"display = flex\">
-                    <div style=\"display: flex;\">
+                    <div style=\"display: flex; justify-content:center; padding-left: 5px\">
                     <a href=\"./tipo-editar.php?id=" . $item['id'] . "\">
                         <i class=\"fa-solid fa-pen-to-square\" style=\"color: #000000\"></i>
                     </a>
-                    <button type=\"button\" onclick=\"confirmExclusao(" . $item['id'] . ")\">
+                    <a style=\"margin-left:5px\" type=\"button\" onclick=\"confirmExclusao(" . $item['id'] . ")\">
                         <i class=\"fas fa-trash\" style=\"color: #000000\"></i>
-                    </button>
+                    </a>
                     <!-- Formulário oculto para enviar o ID do item -->
                     <form id=\"formExcluirItem_" . $item['id'] . "\" action=\"../app/excluir-item.php\" method=\"post\">
                         <input type=\"hidden\" name=\"id\" value=\"" . $item['id'] . "\">
@@ -45,7 +50,7 @@
                 }
     ?>
 
-            
+            </tbody>
         </table>
         <a href="./tipo-cadastro.php">Cadastrar Tipos de Itens</a>
         <a href="../public/listar.php">Ver Itens no Estoque</a>

@@ -1,0 +1,16 @@
+.form-control, .form-select{
+    border: var(--bs-border-width) solid #000000 !important;
+}
+
+.form-control:focus {
+
+    border: 3px solid blue;
+}
+
+a, h2, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+h2{
+    font-weight: 600;
+}
