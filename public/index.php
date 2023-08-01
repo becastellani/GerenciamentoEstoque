@@ -34,9 +34,9 @@
                     }
                     ?>
 </select>
-
                 <button type="submit" class="submit">Cadastrar</button>
                 <a href="../public/listar.php">Ver Itens no Estoque</a>
+                <a href="./tipo.php">Ver Tipos de Itens</a>
 
 
             </form>

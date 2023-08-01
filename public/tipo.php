@@ -12,38 +12,31 @@
 </head>
 <body>
 <div class="container1">
-        <h2>Itens no Estoque</h2>
+        <h2>Listagem Tipos</h2>
         <table>
             <tr>
-                <th>ID</th>
+                <th>#</th>
                 <th>Nome</th>
-                <th>Quantidade</th>
-                <th>Preço</th>
-                <th>Tipo</th>
-                <th>Ações</th>
             </tr>
 
             <?php
-                require_once '../app/Estoque.php';
-                $estoque = new Estoque();
-                $itens = $estoque->getItem();
+                require_once '../app/Item.php';
+                $estoque = new Item();
+                $itens = $estoque->getTipo();
                 foreach ($itens as $item) {
                     echo "<tr>";
                     echo "<td>" . $item['id'] . "</td>";
                     echo "<td>" . $item['nome'] . "</td>";
-                    echo "<td>" . $item['quantidade'] . "</td>";
-                    echo "<td>" . $item['preco'] . "</td>";
-                    echo "<td>" . $item['tipo'] . "</td>";
                     echo "<td style=\"display = flex\">
                     <div style=\"display: flex;\">
-                    <a href=\"./editar.php?id=" . $item['id'] . "\">
+                    <a href=\"./tipo-editar.php?id=" . $item['id'] . "\">
                         <i class=\"fa-solid fa-pen-to-square\" style=\"color: #000000\"></i>
                     </a>
                     <button type=\"button\" onclick=\"confirmExclusao(" . $item['id'] . ")\">
                         <i class=\"fas fa-trash\" style=\"color: #000000\"></i>
                     </button>
                     <!-- Formulário oculto para enviar o ID do item -->
-                    <form id=\"formExcluirItem_" . $item['id'] . "\" action=\"../app/excluir.php\" method=\"post\">
+                    <form id=\"formExcluirItem_" . $item['id'] . "\" action=\"../app/excluir-item.php\" method=\"post\">
                         <input type=\"hidden\" name=\"id\" value=\"" . $item['id'] . "\">
                     </form>
                 </div>
@@ -54,8 +47,9 @@
 
             
         </table>
+        <a href="./tipo-cadastro.php">Cadastrar Tipos de Itens</a>
+        <a href="../public/listar.php">Ver Itens no Estoque</a>
         <a href="./index.php">Voltar para tela de Cadastro</a>
-        <a href="./tipo.php">Ver Tipos de Itens</a>
     </div>
 
     <script src="sweetalert2.min.js"></script>
