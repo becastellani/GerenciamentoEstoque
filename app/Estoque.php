@@ -47,7 +47,18 @@ class Estoque{
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getItemById($id)
+    {
+        $sql = "SELECT i.id, i.nome, i.quantidade, i.preco, i.tipo_id, t.nome AS tipo
+                FROM itens_estoque i
+                LEFT JOIN tipos_item t ON i.tipo_id = t.id
+                WHERE i.id = :id";
 
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
 
     public function updateItem($id, $nome, $quantidade, $preco, $tipoID)
